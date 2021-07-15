@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
 const SignUp = () => {
+    const [email, setemail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        firebase.auth().createUseWithEmailAndPasswoed(email, password)
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     return (
         <div>
             <h1>Sign Up</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor='email'>E-mail</label>
                     <input
@@ -14,6 +25,10 @@ const SignUp = () => {
                         type='email'
                         id='email'
                         placeholder='Email'
+                        value={email}
+                        onChange={e => {
+                            setEmail(e.terget.value)
+                        }}
                     />
                 </div>
                 <div>
@@ -23,6 +38,10 @@ const SignUp = () => {
                         type='password'
                         id='password'
                         placeholder='Password'
+                        value="password"
+                        onChange={e => {
+                            setPassword(e.terget.value)
+                        }}
                     />
                 </div>
                 <button type='submit'>Sign Up</button>
