@@ -1,35 +1,35 @@
-import React from 'react';
+import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-const Login = () => {
+const SignUp = () => {
     return (
-        <>
-            <h1>Login</h1>
+        <div>
+            <h1>Sign Up</h1>
             <form>
                 <div>
                     <label htmlFor='email'>E-mail</label>
                     <input
+                        name='email'
                         type='email'
                         id='email'
-                        name='email'
                         placeholder='Email'
                     />
                 </div>
                 <div>
                     <label htmlFor='password'>Password</label>
                     <input
+                        name='password'
                         type='password'
                         id='password'
-                        name='password'
-                        placeholder='password'
+                        placeholder='Password'
                     />
                 </div>
-                <button type='submit'>Login</button>
+                <button type='submit'>Sign Up</button>
             </form>
-            <Link to="/signup">Sing Up</Link>
-        </>
+            <Link to="/login">login</Link>
+        </div>
     )
 }
 
-export default Login
+export default SignUp
