@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
+import firebase from './config/firebase';
 
 const SignUp = () => {
-    const [email, setemail] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        firebase.auth().createUseWithEmailAndPasswoed(email, password)
-            .catch(err => {
-                console.log(err)
-            })
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .catch(err => { console.log(err) })
     }
 
     return (
@@ -27,7 +27,7 @@ const SignUp = () => {
                         placeholder='Email'
                         value={email}
                         onChange={e => {
-                            setEmail(e.terget.value)
+                            setEmail(e.target.value)
                         }}
                     />
                 </div>
@@ -38,9 +38,9 @@ const SignUp = () => {
                         type='password'
                         id='password'
                         placeholder='Password'
-                        value="password"
+                        value={password}
                         onChange={e => {
-                            setPassword(e.terget.value)
+                            setPassword(e.target.value)
                         }}
                     />
                 </div>
