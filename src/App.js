@@ -1,26 +1,30 @@
 import React from "react";
 
 import Login from "./Login";
-import SingUp from "./SignUp";
+import SignUp from "./SignUp";
 import Room from "./Room";
+import LoggedInRoute from "./LoggedInRoute";
+
+import { AuthProbider } from "./AuthServise";
 
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from 'react-router-dom'
-import SignUp from "./SignUp";
 
 
 const App = () => {
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/" component={Room} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={SignUp} />
-            </Switch>
-        </Router>
+        <AuthProbider>
+            <Router>
+                <Switch>
+                    < LoggedInRoute exact path="/" component={Room} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/signup" component={SignUp} />
+                </Switch>
+            </Router>
+        </AuthProbider>
     )
 }
 
