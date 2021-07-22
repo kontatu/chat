@@ -7,7 +7,7 @@ const Room = () => {
     return (
         <>
             <h1>Room</h1>
-            {/* <button onClick={firebase.auth().signOut()} /> */}
+            <button onClick={firebase.auth().signOut()} />
 
             <Link to="/login">login</Link>
             <Link to="/signup">Sign Up</Link>
