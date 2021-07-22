@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import firebase from "./config/firebase"
 
+// Reaxt.createContextの戻り値は.providerのvalueの中身が返される
 const AuthContext = React.createContext()
 
 // probider => コンテキストで渡したい値を指定するもの
@@ -19,6 +20,7 @@ const AuthProbider = ({ children }) => {
 
 
     return (
+
         <AuthContext.Provider value={user}>
             {children}
         </AuthContext.Provider>
