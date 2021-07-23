@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import firebase from "./config/firebase";
 import { AuthContext } from "./AuthServise";
 
+import { nanoid } from "nanoid";
+
 import { Link } from "react-router-dom";
 
 const Room = () => {
@@ -15,7 +17,8 @@ const Room = () => {
         firebase.firestore().collection('messages')
             .add({
                 content: value,
-                user: user.displayName
+                user: user.displayName,
+                key: nanoid()
             })
     }
 
@@ -35,7 +38,9 @@ const Room = () => {
             <h1>Room</h1>
             <ul>
                 {
-                    messages.map(message => <li>{message.user}:　{message.content}</li>)
+                    messages.map(message =>
+                        <li key={message.key}>{message.user}:　{message.content}</li>
+                    )
                 }
             </ul>
             <form onSubmit={handleSubmit}>
