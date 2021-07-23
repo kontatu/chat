@@ -5,12 +5,18 @@ import { Link } from 'react-router-dom';
 import firebase from './config/firebase';
 
 const SignUp = () => {
+    const [name, setname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
         firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(({ user }) => {
+                user.updateProfile({
+                    displayName: name
+                })
+            })
             .catch(err => { console.log(err) })
     }
 
@@ -18,6 +24,19 @@ const SignUp = () => {
         <div>
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor='name'>name</label>
+                    <input
+                        name='name'
+                        type='name'
+                        id='name'
+                        placeholder='Name'
+                        value={name}
+                        onChange={e => {
+                            setname(e.target.value)
+                        }}
+                    />
+                </div>
                 <div>
                     <label htmlFor='email'>E-mail</label>
                     <input
